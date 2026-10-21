@@ -1,59 +1,89 @@
-# RAG Eval
+# ⚡ RAG Eval: Enterprise Hybrid Retrieval & Evaluation Harness
 
-> A production-grade Retrieval-Augmented Generation (RAG) system with a built-in evaluation harness to quantitatively measure and optimize chunking, retrieval recall, and answer faithfulness.
+![RAG Evaluation CI](https://github.com/aftabjeelani57-cpu/Rag-eval-ask-my-docs/actions/workflows/ci.yml/badge.svg)
+![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)
+![License MIT](https://img.shields.io/badge/license-MIT-green.svg)
 
----
-
-## 💡 Why This Project?
-
-Most RAG implementations fail in production because chunking and retrieval parameters are selected arbitrarily. **`Rag-eval-ask-my-docs`** bridges the gap between basic RAG scripts and production-ready systems by pairing hybrid search with an empirical benchmarking harness—allowing data-driven optimization of context quality.
+A production-grade Retrieval-Augmented Generation (RAG) pipeline paired with a quantitative evaluation harness to systematically measure and optimize chunking strategies, retrieval recall, and cross-encoder reranking precision.
 
 ---
 
-## 🏗️ Architecture Overview
+## 📊 Benchmark Metrics
 
-> **Documents** ──> **Chunking Strategy** ──> **Vector Store**  
-> **Query** ──> **Hybrid Search (BM25 + Dense)**  
-> └──> **Cross-Encoder Reranker** ──> **LLM Generation** ──> **Evaluation Harness**
-
----
-
-## ✨ Core Features
-
-* **Hybrid Retrieval:** Blends sparse keyword search (BM25) with dense vector embeddings to capture both exact terminology and semantic intent.
-* **Two-Stage Reranking:** Applies a cross-encoder model to re-score candidates before passing context to the LLM, reducing noise and hallucination risks.
-* **Empirical Evaluation Harness:** Tracks key metrics against a labeled golden dataset:
-  * **Retrieval Recall@K:** Evaluates whether ground-truth context is successfully retrieved.
-  * **Answer Faithfulness:** Verifies that generated answers stay strictly grounded in retrieved documents.
-* **Modular Experimentation:** Easily test and compare different chunk sizes, overlap ratios, and embedding models.
+| Metric | Score | Dataset Size | Reranker Model |
+| :--- | :--- | :--- | :--- |
+| **Recall@1** | **100%** | 3 Test Cases | `ms-marco-MiniLM-L-6-v2` |
+| **Hybrid Search Precision** | **High** | Multi-chunk Corpus | `all-MiniLM-L6-v2` + BM25 |
 
 ---
 
-## 🚀 Quickstart
+## 🏗 Architecture Overview
 
-1. **Clone the Repository:**
-   `git clone https://github.com/aftabjeelani57-cpu/Rag-eval-ask-my-docs.git`  
-   `cd Rag-eval-ask-my-docs`
+```text
+[ Raw Documents ]
+       │
+       ▼
+[ Overlapping Chunking Strategy ]
+       │
+       ├─────────────────────────────────┐
+       ▼                                 ▼
+[ BM25 Sparse Index ]          [ ChromaDB Vector Store ]
+       │                                 │
+       └─────────────────┬───────────────┘
+                         ▼
+             [ Hybrid Retrieval Layer ]
+                         │
+                         ▼
+        [ Cross-Encoder Precision Reranker ]
+                         │
+                         ▼
+            [ LLM Context Grounding ]
+                         │
+                         ▼
+           [ Automated Recall Evaluation ]
+📂 Project Structure
+Plaintext
+rag-eval/
+├── .github/
+│   └── workflows/
+│       └── ci.yml             # GitHub Actions CI Workflow
+├── data/
+│   ├── sample_docs.json       # Sample document corpus
+│   └── eval_dataset.json      # Ground truth evaluation dataset
+├── eval/
+│   └── run_eval.py            # Quantitative evaluation harness (Recall@K)
+├── src/
+│   ├── chunking.py            # Document chunking module
+│   ├── retriever.py           # Hybrid search (BM25 + ChromaDB)
+│   ├── reranker.py            # Cross-encoder precision reranking
+│   └── generator.py           # LLM answer generation & context grounding
+├── tests/
+│   └── test_pipeline.py       # Pytest unit testing suite
+├── pytest.ini                 # Pytest configuration
+└── requirements.txt           # Python dependencies
+🚀 Quickstart & Usage
+1. Install Dependencies
+Bash
+pip install -r requirements.txt
+2. Run Unit Tests
+Bash
+python -m pytest
+3. Run RAG Evaluation Benchmark
+Bash
+python -m eval.run_eval
+4. Test Interactive Generator
+Bash
+python -m src.generator
 
-2. **Install Dependencies:**
-   `pip install -r requirements.txt`
-
-3. **Run Pipeline & Evaluation:**
-   `python run_eval.py --chunk-size 512 --top-k 5`
+4. Press **`Ctrl + S`** to save the file.
 
 ---
 
-## 📊 Benchmarks & Strategy Comparison
+### Step 2: Push the Clean README to GitHub
 
-| Chunk Strategy | Retrieval Method | Reranker | Recall@5 | Faithfulness |
-| :--- | :--- | :--- | :--- | :--- |
-| Fixed 512 / 50 Overlap | Dense Vector Only | None | 0.72 | 0.81 |
-| Fixed 512 / 50 Overlap | **Hybrid (BM25 + Dense)** | **Cross-Encoder** | **0.91** | **0.94** |
+Run this command in your PowerShell terminal:
 
----
-
-## 🛠️ Built With
-
-* **Language:** Python 3.10+
-* **Retrieval:** Hybrid Search (BM25 + Dense Embeddings)
-* **Evaluation:** Retrieval Recall & Faithfulness Harness
+```powershell
+git add README.md
+git commit -m "Fix README markdown section header rendering"
+git push origin main
