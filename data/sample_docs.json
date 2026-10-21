@@ -1,0 +1,14 @@
+[
+  {
+    "id": "doc1",
+    "text": "Retrieval-Augmented Generation (RAG) is an AI framework for improving LLM responses by grounding the model on external sources of knowledge. Grounding answers in retrieved context significantly reduces hallucinations and keeps facts up to date."
+  },
+  {
+    "id": "doc2",
+    "text": "Hybrid search combines sparse keyword retrieval (such as BM25) with dense vector semantic search. BM25 excels at catching exact terminology and specialized jargon, while vector search captures conceptual context."
+  },
+  {
+    "id": "doc3",
+    "text": "Two-stage reranking uses a Cross-Encoder model to score retrieved query-document pairs jointly. This provides superior precision compared to single-vector cosine similarity, filtering out noisy context before sending it to the LLM."
+  }
+]

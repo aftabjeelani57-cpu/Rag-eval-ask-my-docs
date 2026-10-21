@@ -1,0 +1,17 @@
+[
+  {
+    "id": "q1",
+    "question": "What is the main benefit of RAG?",
+    "expected_doc_id": "doc1"
+  },
+  {
+    "id": "q2",
+    "question": "What does BM25 excel at?",
+    "expected_doc_id": "doc2"
+  },
+  {
+    "id": "q3",
+    "question": "What model is used for two-stage reranking?",
+    "expected_doc_id": "doc3"
+  }
+]

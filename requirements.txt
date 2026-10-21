@@ -1,0 +1,7 @@
+sentence-transformers
+rank-bm25
+chromadb
+openai
+pydantic
+tqdm
+pytest
